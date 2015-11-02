@@ -30,7 +30,7 @@ const ComponentInput = React.createClass({
     return (
       <fieldset>
         <input type="text" placeholder="Component" defaultValue={this.props.name} ref="name" />
-        <input type="number" placeholder="Mileage" defaultValue={this.props.miles} ref="miles" />
+        <input type="number" placeholder="Starting Mileage" defaultValue={this.props.miles} ref="miles" />
 
         {this.props.isNew && <button onClick={this.handleAddComponent}>Add</button>}
       </fieldset>
@@ -98,7 +98,7 @@ const BikeForm = React.createClass({
         <form onSubmit={this.handleSubmit}>
           <fieldset>
             <input placeholder="Bike Name" value={bike.name} onChange={this.handleChange.bind(this, 'name')} />
-            <input placeholder="Starting Distance(in KM)" value={bike.startdist} onChange={this.handleChange.bind(this, 'startdist')} />
+            <input placeholder="Starting Distance(in miles)" value={bike.startdist} onChange={this.handleChange.bind(this, 'startdist')} />
           </fieldset>
 
           <fieldset>
