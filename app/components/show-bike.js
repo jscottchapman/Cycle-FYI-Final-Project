@@ -36,12 +36,20 @@ const ShowBike = React.createClass({
 
   render() {
     let bike = this.state.bike;
+    let component = bike && bike.components || [];
     if(this.state.isEditing) {
       return <BikeForm initialBike={bike} onSave={this.handleEdit} />;
     } else {
       return (
         <div>
           <h1>{bike.name}</h1>
+          <ul>
+            {component.map((x) =>
+              <li key={Math.round(Math.random() * 10000)}>
+                {x.name}
+              </li>
+            )}
+            </ul>
           <button onClick={this.handleEdit}>Edit</button>
           <button className="alert" onClick={this.handleDestroy}>Destroy</button>
         </div>

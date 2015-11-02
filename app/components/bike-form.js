@@ -65,6 +65,7 @@ const BikeForm = React.createClass({
 
     this.setState({
       bike: update(this.state.bike, newState)
+
     });
   },
 
@@ -92,11 +93,12 @@ const BikeForm = React.createClass({
 
   render() {
     let bike = this.state.bike;
+    let startdist = this.state.startdist;
     return (
         <form onSubmit={this.handleSubmit}>
           <fieldset>
             <input placeholder="Bike Name" value={bike.name} onChange={this.handleChange.bind(this, 'name')} />
-            <input placeholder="Starting Distance(in KM)" value={bike.category} onChange={this.handleChange.bind(this, 'startdist')} /> 
+            <input placeholder="Starting Distance(in KM)" value={bike.startdist} onChange={this.handleChange.bind(this, 'startdist')} />
           </fieldset>
 
           <fieldset>
