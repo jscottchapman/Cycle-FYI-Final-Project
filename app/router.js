@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
-
+import ComponentInput from './components/component-form';
 import App from './components/app';
 import BikeForm from './components/bike-form';
 import Index from './components/index';
@@ -30,6 +30,7 @@ ReactDOM.render((
 
       <Route path="create" component={BikeForm} onEnter={requireAuth} />
       <Route path="bikes/:id" component={ShowBike} onEnter={requireAuth} />
+      <Route path="addcomponents" component={ComponentInput} onEnter={requireAuth} />
       <Route path="login" component={Login} onEnter={requireNotAuth} />
       <Route path="signup" component={Signup} onEnter={requireNotAuth} />
     </Route>

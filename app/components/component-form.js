@@ -10,7 +10,8 @@ const ComponentInput = React.createClass({
     name: React.PropTypes.string,
     miles: React.PropTypes.number,
     isNew: React.PropTypes.bool,
-    onAdd: React.PropTypes.func
+    onAdd: React.PropTypes.func,
+    onSave: React.PropTypes.func
   },
 
   mixins: [BackboneMixin],
@@ -24,7 +25,27 @@ const ComponentInput = React.createClass({
 
     this.refs.name.value = '';
     this.refs.miles.value = '';
-  },
+
+    this.setState({
+      component: update(this.state.component, {
+        components: {$push: [component]}
+      })
+    });
+
+    },
+
+    handleSubmit(e) {
+      e.preventDefault();
+
+      let component = this.state.component;
+      store.saveComponent(component, {parse: true});
+
+      if(this.props.onSave) {
+        this.props.onSave(component);
+      } else {
+        this.history.pushState({}, '/');
+      }
+    },
 
   render() {
     return (

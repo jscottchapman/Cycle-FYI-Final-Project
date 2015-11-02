@@ -75,7 +75,6 @@ const BikeForm = React.createClass({
     let bike = this.state.bike;
     store.saveBike(bike, {parse: true});
 
-    // TODO: this isn't quite working, state is out of date
     if(this.props.onSave) {
       this.props.onSave(bike);
     } else {
