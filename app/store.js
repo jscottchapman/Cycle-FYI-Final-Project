@@ -2,6 +2,8 @@ import _ from 'underscore';
 import Backbone from 'backbone';
 
 import Session from './models/session';
+import Component from './models/component';
+import ComponentsCollection from './models/components-collection';
 import Bike from './models/bike';
 import BikesCollection from './models/bikes-collection';
 import CommentsCollection from './models/comments-collection';
@@ -9,6 +11,7 @@ import User from './models/user';
 
 let session = new Session();
 let bikes = new BikesCollection();
+let components = new ComponentsCollection();
 
 const Store = _.extend({}, Backbone.Events, {
 

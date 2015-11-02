@@ -30,7 +30,6 @@ ReactDOM.render((
 
       <Route path="create" component={BikeForm} onEnter={requireAuth} />
       <Route path="bikes/:id" component={ShowBike} onEnter={requireAuth} />
-
       <Route path="login" component={Login} onEnter={requireNotAuth} />
       <Route path="signup" component={Signup} onEnter={requireNotAuth} />
     </Route>

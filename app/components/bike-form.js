@@ -8,7 +8,7 @@ const ComponentInput = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string,
-    qty: React.PropTypes.number,
+    miles: React.PropTypes.number,
     isNew: React.PropTypes.bool,
     onAdd: React.PropTypes.func
   },
@@ -19,20 +19,20 @@ const ComponentInput = React.createClass({
     e.preventDefault();
     this.props.onAdd({
       name: this.refs.name.value,
-      qty: Number(this.refs.qty.value)
+      miles: Number(this.refs.miles.value)
     });
 
     this.refs.name.value = '';
-    this.refs.qty.value = '';
+    this.refs.miles.value = '';
   },
 
   render() {
     return (
       <fieldset>
         <input type="text" placeholder="Component" defaultValue={this.props.name} ref="name" />
-        <input type="number" placeholder="Quantity" defaultValue={this.props.qty} ref="qty" />
+        <input type="number" placeholder="Mileage" defaultValue={this.props.miles} ref="miles" />
 
-        {this.props.isNew && <button onClick={this.handleAddComponent}>+</button>}
+        {this.props.isNew && <button onClick={this.handleAddComponent}>Add</button>}
       </fieldset>
     );
   }

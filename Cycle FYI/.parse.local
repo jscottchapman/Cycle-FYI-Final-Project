@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Cycle FYI": {
+      "applicationId": "q472fWAzzXYlNqlH8fUo9iDkoyL0K6KKHmPVWgzE"
+    },
+    "_default": {
+      "link": "Cycle FYI"
+    }
+  }
+}
