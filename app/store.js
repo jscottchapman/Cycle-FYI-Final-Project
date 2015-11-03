@@ -18,6 +18,34 @@ const Store = _.extend({}, Backbone.Events, {
   initialize() {
     this.listenTo(bikes, 'add change remove', this.trigger.bind(this, 'change'));
     this.listenTo(session, 'change', this.trigger.bind(this, 'change'));
+    this.listenTo(components, 'add change remove', this.trigger.bind(this, 'change'));
+  },
+
+  getComponents() {
+    return components.toJSON();
+
+  },
+
+  fetchComponents() {
+    return components.fetch();
+  },
+
+  getComponent(id) {
+    let component = components.get(id);
+    if(component) {
+      return component.toJSON();
+    } else {
+      components.fetch();
+      return {};
+    }
+  },
+
+  saveComponent(component, options) {
+    return components.create(component, options);
+  },
+
+  destroyComponent(component) {
+    return components.get(component.objectId).destroy();
   },
 
   getBikes() {

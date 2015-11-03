@@ -1,6 +1,6 @@
 import React from 'react';
 import store from '../store';
-import { History } from 'react-router';
+import { History, Link } from 'react-router';
 import BackboneMixin from '../mixins/backbone';
 import BikeForm from './bike-form';
 
@@ -49,9 +49,16 @@ const ShowBike = React.createClass({
                 {x.name}
               </li>
             )}
+
             </ul>
-          <button onClick={this.handleEdit}>Edit</button>
-          <button className="alert" onClick={this.handleDestroy}>Destroy</button>
+            {this.props.children || (
+              <div>
+                <Link className="button" to={'/bikes/' + this.props.params.id + '/addcomponents'}>Add Component</Link>
+                <button onClick={this.handleEdit}>Edit</button>
+                <button className="alert" onClick={this.handleDestroy}>Destroy</button>
+              </div>
+            )}
+
         </div>
       );
     }

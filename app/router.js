@@ -29,8 +29,9 @@ ReactDOM.render((
       <IndexRoute component={Index} onEnter={requireAuth} />
 
       <Route path="create" component={BikeForm} onEnter={requireAuth} />
-      <Route path="bikes/:id" component={ShowBike} onEnter={requireAuth} />
+      <Route path="bikes/:id" component={ShowBike} onEnter={requireAuth}>
       <Route path="addcomponents" component={ComponentInput} onEnter={requireAuth} />
+      </Route>
       <Route path="login" component={Login} onEnter={requireNotAuth} />
       <Route path="signup" component={Signup} onEnter={requireNotAuth} />
     </Route>
