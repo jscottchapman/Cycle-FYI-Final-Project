@@ -8,6 +8,7 @@ import Index from './components/index';
 import Login from './components/login';
 import Signup from './components/signup';
 import ShowBike from './components/show-bike';
+import ActivitiesView from './components/activities-view';
 
 import store from './store';
 
@@ -32,6 +33,7 @@ ReactDOM.render((
       <Route path="bikes/:id" component={ShowBike} onEnter={requireAuth}>
       <Route path="addcomponents" component={ComponentInput} onEnter={requireAuth} />
       </Route>
+      <Route path="activities" component={ActivitiesView} />
       <Route path="login" component={Login} onEnter={requireNotAuth} />
       <Route path="signup" component={Signup} onEnter={requireNotAuth} />
     </Route>

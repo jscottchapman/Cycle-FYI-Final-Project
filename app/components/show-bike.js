@@ -5,7 +5,13 @@ import BackboneMixin from '../mixins/backbone';
 import BikeForm from './bike-form';
 
 const ShowBike = React.createClass({
+
+  propTypes: {
+    children: React.PropTypes.node
+  },
+
   mixins: [History, BackboneMixin],
+
 
   getInitialState() {
     return {

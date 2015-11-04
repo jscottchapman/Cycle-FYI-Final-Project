@@ -8,7 +8,8 @@ import Bike from './models/bike';
 import BikesCollection from './models/bikes-collection';
 import CommentsCollection from './models/comments-collection';
 import User from './models/user';
-
+import Activity from './models/strava';
+let activities = new Activity();
 let session = new Session();
 let bikes = new BikesCollection();
 let components = new ComponentsCollection();
@@ -17,9 +18,20 @@ const Store = _.extend({}, Backbone.Events, {
 
   initialize() {
     this.listenTo(bikes, 'add change remove', this.trigger.bind(this, 'change'));
+    this.listenTo(activities, 'add change remove', this.trigger.bind(this, 'change'));
+
     this.listenTo(session, 'change', this.trigger.bind(this, 'change'));
     this.listenTo(components, 'add change remove', this.trigger.bind(this, 'change'));
   },
+
+  getActivities() {
+    return activities.toJSON();
+  },
+
+  fetchActivities() {
+    return activities.fetch();
+  },
+
 
   getComponents() {
     return components.toJSON();
