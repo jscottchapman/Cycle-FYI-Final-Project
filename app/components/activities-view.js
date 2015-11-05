@@ -4,7 +4,7 @@ import BackboneMixin from '../mixins/backbone'
 const Activity = React.createClass({
   render() {
     var activity = this.props.activity;
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <li>
         {activity.name}
