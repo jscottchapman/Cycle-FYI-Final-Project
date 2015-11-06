@@ -1,3 +1,9 @@
+Homepage image by Alex Talmon.
+
+
+
+
+
 # react-webpack-scaffolding
 
 ## How to get started

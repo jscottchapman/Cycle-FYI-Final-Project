@@ -1,9 +1,16 @@
 import React from 'react';
 import store from '../store';
 import BackboneMixin from '../mixins/backbone';
-
+import moment from 'moment';
 const Activity = React.createClass({
+
+  propTypes: {
+    bikes: React.PropTypes.string,
+    activity: React.PropTypes.object
+  },
   render() {
+
+
     var activity = this.props.activity;
     // console.log(this.props)
     return (
@@ -12,13 +19,13 @@ const Activity = React.createClass({
         {activity.name}
         <ul>
           <li>
-            {activity.start_date_local}
+            {moment(activity.start_date).format("dddd, MMMM Do YYYY, h:mm:ss a")}
           </li>
           <li>
-            {activity.distance}
+            {(activity.distance * 0.000621371192).toFixed(2) + " miles"}
           </li>
           <li>
-            {activity.type}
+            {activity.location_city}
           </li>
         </ul>
         <select>
@@ -50,18 +57,16 @@ const ActivitiesView = React.createClass({
     var activities = this.state.activities;
     return(
       <div className="row">
-        <div className="large-6 columns">
-        <div className="large-10 columns">
-        <ul>
-          {activities.map((x) =>
-            <Activity activity={x} bikes={this.state.bikes} key={x.id} />
-          )}
-        </ul>
-        <div className="large-1 columns">
-        </div>
-        </div>
-        </div>
-      </div>
+        <div className="large-2 columns"/>
+          <div className="large-8 columns">
+            <ul>
+              {activities.map((x) =>
+                <Activity activity={x} bikes={this.state.bikes} key={x.id} />
+              )}
+            </ul>
+          </div>
+        <div className="large-2 columns"/>
+    </div>
     );
   }
 });

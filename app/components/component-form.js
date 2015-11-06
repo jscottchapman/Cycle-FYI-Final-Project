@@ -14,7 +14,7 @@ const ComponentInput = React.createClass({
     this.history.goBack();
 
 
-    store.saveComponent({
+    store.saveComponentOnBike({
       onWhatBike: {id:this.props.params.id},
       name: this.refs.name.value,
       miles: Number(this.refs.miles.value)

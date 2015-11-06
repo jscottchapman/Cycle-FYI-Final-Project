@@ -15,7 +15,6 @@ var Bike = Backbone.Model.extend({
 
   defaults() {
     return {
-      components: [],
       creator: {toJSON: function() {}}
     }
   },

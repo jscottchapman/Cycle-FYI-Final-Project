@@ -4,6 +4,7 @@ import { History, Link } from 'react-router';
 import BackboneMixin from '../mixins/backbone';
 import BikeForm from './bike-form';
 
+
 const ShowBike = React.createClass({
 
   propTypes: {
@@ -19,9 +20,14 @@ const ShowBike = React.createClass({
     };
   },
 
+  componentWillMount() {
+    store.fetchComponentsForBike(this.props.params.id);
+  },
+
   getModels() {
     return {
-      bike: store.getBike(this.props.params.id)
+      bike: store.getBike(this.props.params.id),
+      components: store.getComponentsForBike(this.props.params.id)
     };
   },
 
@@ -40,9 +46,16 @@ const ShowBike = React.createClass({
     }
   },
 
+  handleComponent(e) {
+    e.preventDefault();
+    store.componentOnBike(this.props.params.id, this.refs.component.value);
+    this.refs.component.value = '';
+  },
+
   render() {
     let bike = this.state.bike;
-    let component = bike && bike.components || [];
+    let components = this.state.components;
+
     if(this.state.isEditing) {
       return <BikeForm initialBike={bike} onSave={this.handleEdit} />;
     } else {
@@ -50,9 +63,10 @@ const ShowBike = React.createClass({
         <div>
           <h1>{bike.name}</h1>
           <ul>
-            {component.map((x) =>
-              <li key={Math.round(Math.random() * 10000)}>
+            {components.map((x) =>
+              <li key={x.objectId}>
                 {x.name}
+                
               </li>
             )}
 

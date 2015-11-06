@@ -12,7 +12,8 @@ import Activity from './models/strava';
 let activities = new Activity();
 let session = new Session();
 let bikes = new BikesCollection();
-let components = new ComponentsCollection();
+
+let componentsCache = {};
 
 const Store = _.extend({}, Backbone.Events, {
 
@@ -21,7 +22,6 @@ const Store = _.extend({}, Backbone.Events, {
     this.listenTo(activities, 'add change remove', this.trigger.bind(this, 'change'));
 
     this.listenTo(session, 'change', this.trigger.bind(this, 'change'));
-    this.listenTo(components, 'add change remove', this.trigger.bind(this, 'change'));
   },
 
   getActivities() {
@@ -42,6 +42,8 @@ const Store = _.extend({}, Backbone.Events, {
     return components.fetch();
   },
 
+
+
   getComponent(id) {
     let component = components.get(id);
     if(component) {
@@ -58,6 +60,29 @@ const Store = _.extend({}, Backbone.Events, {
 
   destroyComponent(component) {
     return components.get(component.objectId).destroy();
+  },
+
+  getComponentsForBike(id) {
+    let components = (componentsCache[id] = componentsCache[id] || new ComponentsCollection(null, {bikeId: id}));
+    this.stopListening(components);
+    this.listenTo(components, 'add remove change', this.trigger.bind(this, 'change'));
+    return components.toJSON();
+  },
+
+  fetchComponentsForBike(id) {
+    let components = (componentsCache[id] = componentsCache[id] || new ComponentsCollection(null, {bikeId: id}));
+    this.stopListening(components);
+    this.listenTo(components, 'add remove change', this.trigger.bind(this, 'change'));
+    return components.fetch();
+  },
+
+  saveComponentOnBike(id, component) {
+    let components = (componentsCache[id] = componentsCache[id] || new ComponentsCollection(null, {bikeId: id}));
+    this.stopListening(components);
+    this.listenTo(components, 'add remove change', this.trigger.bind(this, 'change'));
+    components.create(_.extend({}, component, {
+      bike: {objectId: id},
+    }));
   },
 
   getBikes() {
