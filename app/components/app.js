@@ -30,7 +30,7 @@ var App = React.createClass({
 
     return (
       <div>
-        <nav className="top-bar" data-topbar role="navigation">
+        <nav className="top-bar topbar-bg-color" data-topbar role="navigation">
           <ul className="title-area">
             <li className="name">
               <h1><IndexLink to="/">Home</IndexLink></h1>
@@ -40,7 +40,7 @@ var App = React.createClass({
           <section className="top-bar-section">
             {/* Left Nav Section */}
             <ul className="left">
-              <li><Link to="/create">Create</Link></li>
+              <li><Link to="/create">Create New Bike</Link></li>
             </ul>
 
             <ul className="right">
