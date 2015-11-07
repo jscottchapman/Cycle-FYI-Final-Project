@@ -11,6 +11,7 @@ const Component = Backbone.Model.extend({
     return {
       name: "",
       mileage: "",
+      creator: "",
     }
   },
 

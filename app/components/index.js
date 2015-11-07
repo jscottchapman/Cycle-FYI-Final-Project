@@ -1,9 +1,15 @@
 import React from 'react';
+import Router from 'react-router';
 import store from '../store';
 import { Link } from 'react-router';
 import BackboneMixin from '../mixins/backbone';
 
 var Index = React.createClass({
+
+
+  contextTypes() {
+    router: React.PropTypes.func
+  },
 
   mixins: [BackboneMixin],
 
@@ -18,17 +24,20 @@ var Index = React.createClass({
     }
   },
 
+
+
   render() {
     var bikes = this.state.bikes;
     // TODO: creator username is flashing
     return (
       <div>
-        <h1>Index</h1>
+        <h1>The Bike Garage</h1>
         <ul>
           {bikes.map((r, i) => {
-            return (<li key={r.objectId || i}><Link to={`/bikes/${r.objectId}`}>{r.name} - ({r.creator.username})</Link></li>);
+            return (<li key={r.objectId || i}><Link to={`/bikes/${r.objectId}`}>{r.name} </Link></li>);
           })}
         </ul>
+        <Link to={`/activities`}>Ready to assign usage?</Link>
       </div>
     );
   }

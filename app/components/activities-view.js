@@ -25,7 +25,7 @@ const Activity = React.createClass({
             {(activity.distance * 0.000621371192).toFixed(2) + " miles"}
           </li>
           <li>
-            {activity.location_city}
+            {activity.location_city}, {activity.location_state}
           </li>
         </ul>
         <select>

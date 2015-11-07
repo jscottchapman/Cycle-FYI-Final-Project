@@ -133,7 +133,22 @@ const Store = _.extend({}, Backbone.Events, {
     return user.save().then(() => {
       return session.authenticate({sessionToken: user.get('sessionToken')});
     });
-  }
+  },
+  saveUser(user, options) {
+    options = _.extend({}, options, {merge: true});
+    return users.create(user, options);
+  },
+
+  // TODO: do something if id doesn't exist
+  getUser(id) {
+    let user = users.get(id);
+    if(user) {
+      return user.toJSON();
+    } else {
+      users.fetch();
+      return {};
+    }
+  }  
 });
 
 Store.initialize();

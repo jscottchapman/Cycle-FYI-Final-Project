@@ -66,7 +66,7 @@ const ShowBike = React.createClass({
             {components.map((x) =>
               <li key={x.objectId}>
                 {x.name}
-                
+
               </li>
             )}
 
@@ -78,7 +78,7 @@ const ShowBike = React.createClass({
                 <button className="alert" onClick={this.handleDestroy}>Destroy</button>
               </div>
             )}
-
+            <Link to={`/activities`}>Ready to assign usage?</Link>
         </div>
       );
     }
