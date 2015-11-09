@@ -4,8 +4,37 @@
 @import '~font-awesome/scss/font-awesome';
 @import 'foundation';
 
-
+.orange-text {
+  color: #282c35;
+}
 
 .top-bar {
   background-color: #f74f00;
+}
+
+body {
+  background-image: url('../../public/assets/images/homepage.jpeg');
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.addcompbutton {
+  background-color: #282C35;
+}
+
+
+h1 {
+  color: white;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: white;
+}
+
+.bodytext {
+  color: white;
 }

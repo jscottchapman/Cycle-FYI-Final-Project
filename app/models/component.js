@@ -12,6 +12,7 @@ const Component = Backbone.Model.extend({
       name: "",
       mileage: "",
       creator: "",
+      threshold: "",
     }
   },
 
@@ -21,10 +22,16 @@ const Component = Backbone.Model.extend({
       var bike = this.get('onWhatBike') ? {
         "__type": "Pointer",
         "className": "Bike",
-        "objectId": this.get('onWhatBike').id
+        "objectId": this.get('onWhatBike').objectId
       } : null;
       return _.extend({}, this.attributes, {
-        onWhatBike: bike
+        onWhatBike: bike,
+        creator: {
+          "__type": "Pointer",
+          "className": "_User",
+          "objectId": this.get('creator').objectId
+        }
+
       });
 
     // I'm using toJSON to get a simple object of attributes

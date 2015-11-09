@@ -9,6 +9,7 @@ import Login from './components/login';
 import Signup from './components/signup';
 import ShowBike from './components/show-bike';
 import ActivitiesView from './components/activities-view';
+import Thing from './components/landing';
 
 import store from './store';
 
@@ -30,6 +31,7 @@ ReactDOM.render((
       <IndexRoute component={Index} onEnter={requireAuth} />
 
       <Route path="create" component={BikeForm} onEnter={requireAuth} />
+      <Route path="landing" component={Thing} />
       <Route path="bikes/:id" component={ShowBike} onEnter={requireAuth}>
       <Route path="addcomponents" component={ComponentInput} onEnter={requireAuth} />
       </Route>

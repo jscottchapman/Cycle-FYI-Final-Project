@@ -62,10 +62,10 @@ const ShowBike = React.createClass({
       return (
         <div>
           <h1>{bike.name}</h1>
-          <ul>
+          <ul className="bodytext">
             {components.map((x) =>
-              <li key={x.objectId}>
-                {x.name}
+              <li key={x.objectId || Date.now()}>
+                {x.name}--{x.miles}/{x.threshold}miles
 
               </li>
             )}
@@ -73,7 +73,7 @@ const ShowBike = React.createClass({
             </ul>
             {this.props.children || (
               <div>
-                <Link className="button" to={'/bikes/' + this.props.params.id + '/addcomponents'}>Add Component</Link>
+                <Link className="button addcompbutton" to={'/bikes/' + this.props.params.id + '/addcomponents'}>Add Component</Link>
                 <button onClick={this.handleEdit}>Edit</button>
                 <button className="alert" onClick={this.handleDestroy}>Destroy</button>
               </div>

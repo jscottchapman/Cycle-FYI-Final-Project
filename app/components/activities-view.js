@@ -16,8 +16,10 @@ const Activity = React.createClass({
     return (
 
       <li>
-        {activity.name}
-        <ul>
+        <h4 className="bodytext">
+          {activity.name}
+        </h4>
+        <ul className="bodytext">
           <li>
             {moment(activity.start_date).format("dddd, MMMM Do YYYY, h:mm:ss a")}
           </li>
@@ -59,7 +61,7 @@ const ActivitiesView = React.createClass({
       <div className="row">
         <div className="large-2 columns"/>
           <div className="large-8 columns">
-            <ul>
+            <ul className="textname">
               {activities.map((x) =>
                 <Activity activity={x} bikes={this.state.bikes} key={x.id} />
               )}

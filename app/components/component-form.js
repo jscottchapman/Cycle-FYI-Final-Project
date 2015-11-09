@@ -14,14 +14,17 @@ const ComponentInput = React.createClass({
     this.history.goBack();
 
 
-    store.saveComponentOnBike({
-      onWhatBike: {id:this.props.params.id},
+    store.saveComponentOnBike(
+      this.props.params.id,
+      {
       name: this.refs.name.value,
-      miles: Number(this.refs.miles.value)
+      miles: Number(this.refs.miles.value),
+      threshold: Number(this.refs.threshold.value)
     });
 
     this.refs.name.value = '';
     this.refs.miles.value = '';
+    this.refs.threshold.value = '';
 
     },
 
@@ -30,6 +33,7 @@ const ComponentInput = React.createClass({
       <fieldset>
         <input type="text" placeholder="Component" ref="name" />
         <input type="number" placeholder="Starting Mileage" ref="miles" />
+        <input type="number" placeholder="Maintenance Threshold(in MIles)" ref="threshold" />
         <button onClick={this.handleAddComponent}>Add</button>
       </fieldset>
     );

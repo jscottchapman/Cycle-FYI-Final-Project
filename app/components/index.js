@@ -28,16 +28,15 @@ var Index = React.createClass({
 
   render() {
     var bikes = this.state.bikes;
-    // TODO: creator username is flashing
     return (
-      <div>
+      <div className="bodytext">
         <h1>The Bike Garage</h1>
         <ul>
           {bikes.map((r, i) => {
             return (<li key={r.objectId || i}><Link to={`/bikes/${r.objectId}`}>{r.name} </Link></li>);
           })}
         </ul>
-        <Link to={`/activities`}>Ready to assign usage?</Link>
+        <Link className="bodytext" to={`/activities`}>Ready to assign usage?</Link>
       </div>
     );
   }
