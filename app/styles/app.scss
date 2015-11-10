@@ -3,9 +3,36 @@
 @import '~normalize.css/normalize.css';
 @import '~font-awesome/scss/font-awesome';
 @import 'foundation';
+$include-html-button-classes: $include-html-classes;
+
+$button-tny: em-calc(5);
 
 .orange-text {
-  color: #282c35;
+  color: #f74f00;
+}
+
+.black-text {
+  color: black;
+}
+
+div.row {
+  margin-left: 0;
+}
+
+.bike-box {
+  border: 2px solid #f74f00;
+  background-color: #ffffff;
+  padding: 1em;
+  opacity: .6;
+
+}
+
+hr {
+  border: 0;
+  background-color: #f74f00; /* Modern Browsers */
+  height: 4px;
+    /* Set the hr color */
+  color: #f74f00; /* old IE */
 }
 
 .top-bar {
@@ -13,9 +40,11 @@
 }
 
 body {
-  background-image: url('../../public/assets/images/homepage.jpeg');
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../../public/assets/images/homepage.jpeg');
+
   background-attachment: fixed;
   background-position: center;
+  font-family: arial;
 }
 
 .addcompbutton {
@@ -25,6 +54,7 @@ body {
 
 h1 {
   color: white;
+  font-family: georgia;
 }
 
 li {
@@ -37,4 +67,8 @@ a {
 
 .bodytext {
   color: white;
+}
+
+.row .columns:first-child {
+  padding-left: 0;
 }

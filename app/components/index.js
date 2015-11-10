@@ -31,11 +31,18 @@ var Index = React.createClass({
     return (
       <div className="bodytext">
         <h1>The Bike Garage</h1>
-        <ul>
-          {bikes.map((r, i) => {
-            return (<li key={r.objectId || i}><Link to={`/bikes/${r.objectId}`}>{r.name} </Link></li>);
-          })}
-        </ul>
+          <div className="row">
+            <div className="large-4 columns">
+              <ul>
+                {bikes.map((r, i) => {
+                  return (<li key={r.objectId || i}><div className="bike-box"><Link className="large black-text" to={`/bikes/${r.objectId}`}>{r.name} </Link></div><br/></li>);
+                })}
+              </ul>
+          </div>
+          <div className="large-8 columns">
+
+          </div>
+          </div>
         <Link className="bodytext" to={`/activities`}>Ready to assign usage?</Link>
       </div>
     );

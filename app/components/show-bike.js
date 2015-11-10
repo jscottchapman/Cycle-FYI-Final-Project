@@ -5,6 +5,7 @@ import BackboneMixin from '../mixins/backbone';
 import BikeForm from './bike-form';
 
 
+
 const ShowBike = React.createClass({
 
   propTypes: {
@@ -52,6 +53,10 @@ const ShowBike = React.createClass({
     this.refs.component.value = '';
   },
 
+  removeComponent(e) {
+    store.saveComponentToShelf(this.props.params.id, this.state.components);
+  },
+
   render() {
     let bike = this.state.bike;
     let components = this.state.components;
@@ -61,21 +66,27 @@ const ShowBike = React.createClass({
     } else {
       return (
         <div>
-          <h1>{bike.name}</h1>
-          <ul className="bodytext">
-            {components.map((x) =>
-              <li key={x.objectId || Date.now()}>
-                {x.name}--{x.miles}/{x.threshold}miles
+          <div className="row">
+            <div className="large-4 columns">
+              <h1>{bike.name}</h1>
+                <ul className="bodytext">
+                  {components.map((x) =>
+                    <li key={x.objectId || Date.now()}>
+                      {x.name}--{x.miles}/{x.threshold}miles
+                        <button className="tiny button radius" onClick={this.removeComponent}>Remove component from bike</button>
+                        <hr/>
+                    </li>
+                  )}
+                  </ul>
+                  <div className="large-8 columns"></div>
+              </div>
 
-              </li>
-            )}
-
-            </ul>
+            </div>
             {this.props.children || (
               <div>
-                <Link className="button addcompbutton" to={'/bikes/' + this.props.params.id + '/addcomponents'}>Add Component</Link>
-                <button onClick={this.handleEdit}>Edit</button>
-                <button className="alert" onClick={this.handleDestroy}>Destroy</button>
+                <Link className="button medium addcompbutton radius" to={'/bikes/' + this.props.params.id + '/addcomponents'}>Add Component</Link>
+                <button className="button medium" onClick={this.handleEdit}>Edit</button>
+                <button className="alert medium radius" onClick={this.handleDestroy}>Destroy Bike Forever</button>
               </div>
             )}
             <Link to={`/activities`}>Ready to assign usage?</Link>

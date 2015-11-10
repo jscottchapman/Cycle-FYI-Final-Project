@@ -64,10 +64,16 @@ const BikeForm = React.createClass({
     let startdist = this.state.startdist;
     return (
         <form onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="large-4 columns">
           <fieldset>
             <input placeholder="Bike Name" value={bike.name} onChange={this.handleChange.bind(this, 'name')} />
             <input placeholder="Starting Distance(In Miles)" value={bike.startdist} onChange={this.handleChange.bind(this, 'startdist')} />
           </fieldset>
+          </div>
+          <div className="large-8 columns">
+          </div>
+        </div>
 
 
           <button type="submit" onClick={this.handleSubmit}>Save</button>

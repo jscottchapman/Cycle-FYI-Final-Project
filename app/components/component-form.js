@@ -28,14 +28,30 @@ const ComponentInput = React.createClass({
 
     },
 
+  handleCancel() {
+    this.history.goBack();
+  },
+
   render() {
+    
+
+
+
     return (
-      <fieldset>
-        <input type="text" placeholder="Component" ref="name" />
-        <input type="number" placeholder="Starting Mileage" ref="miles" />
-        <input type="number" placeholder="Maintenance Threshold(in MIles)" ref="threshold" />
-        <button onClick={this.handleAddComponent}>Add</button>
-      </fieldset>
+      <div className="row">
+          <div className="large-4 columns">
+
+            <fieldset>
+            <input type="text" placeholder="New Component" ref="name" />
+            <input type="number" placeholder="Starting Mileage" ref="miles" />
+            <input type="number" placeholder="Maintenance Threshold(in Miles)" ref="threshold" />
+            <button onClick={this.handleAddComponent}>Add</button>
+            <button className="alert" onClick={this.handleCancel}>Cancel</button>
+            </fieldset>
+          </div>
+        <div className="large-8 columns">
+        </div>
+      </div>
     );
   }
 });

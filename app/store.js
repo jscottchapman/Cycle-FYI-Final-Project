@@ -85,14 +85,15 @@ const Store = _.extend({}, Backbone.Events, {
     }));
   },
 
-  // saveComponentToShelf(id, component) {
-  //   let components = (componentsCache[id] = componentsCache[id] || new ComponentsCollection(null, {bikeId: id}));
-  //   this.stopListening(components);
-  //   this.listenTo(components, 'add remove change', this.trigger.bind(this, 'change'));
-  //   components.create(_.extend({}, component, {
-  //     onWhatBike: {objectId: id},
-  //   }));
-  // },
+  saveComponentToShelf(id, component) {
+    let components = (componentsCache[id] = componentsCache[id] || new ComponentsCollection(null, {bikeId: id}));
+    this.stopListening(components);
+    this.listenTo(components, 'add remove change', this.trigger.bind(this, 'change'));
+    components.create(_.extend({}, component, {
+      onWhatBike: {objectId: null},
+    }));
+  },
+
   getBikes() {
     return bikes.toJSON();
   },
