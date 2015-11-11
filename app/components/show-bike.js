@@ -23,12 +23,14 @@ const ShowBike = React.createClass({
 
   componentWillMount() {
     store.fetchComponentsForBike(this.props.params.id);
+    store.fetchShelf(this.props.params.id)
   },
 
   getModels() {
     return {
       bike: store.getBike(this.props.params.id),
-      components: store.getComponentsForBike(this.props.params.id)
+      components: store.getComponentsForBike(this.props.params.id),
+      shelf: store.getShelf(this.props.params.id)
     };
   },
 
@@ -57,9 +59,18 @@ const ShowBike = React.createClass({
     store.saveComponentToShelf(component);
   },
 
+  getShelf(component) {
+    store.getComponentFromShelf(component);
+  },
+
+  saveOnBike(component) {
+    store.saveComponentOnBike(component);
+  },
+
   render() {
     let bike = this.state.bike;
     let components = this.state.components;
+    let shelf = this.state.shelf;
 
     if(this.state.isEditing) {
       return <BikeForm initialBike={bike} onSave={this.handleEdit} />;
@@ -84,12 +95,22 @@ const ShowBike = React.createClass({
             </div>
             {this.props.children || (
               <div>
+                <ul className="white-text">
+                  {shelf.map((x) =>
+                    <li key={x.objectId || Date.now()} value={x.objectId}>
+                      {x.name}--{x.miles}/{x.threshold}miles
+                    <button onClick={this.saveOnBike.bind(this, x)}>Save to this bike</button></li>
+                  )}
+
+                </ul>
                 <Link className="button medium addcompbutton radius" to={'/bikes/' + this.props.params.id + '/addcomponents'}>Add Component</Link>
                 <button className="button medium" onClick={this.handleEdit}>Edit</button>
-                <button className="alert medium radius" onClick={this.handleDestroy}>Destroy Bike Forever</button>
+
+
               </div>
             )}
             <Link to={`/activities`}>Ready to assign usage?</Link>
+            <button className="alert medium radius" onClick={this.handleDestroy}>Destroy Bike Forever</button>
         </div>
       );
     }
