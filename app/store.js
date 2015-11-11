@@ -14,12 +14,14 @@ let session = new Session();
 let bikes = new BikesCollection();
 
 let componentsCache = {};
+let shelf = new ComponentsCollection();
 
 const Store = _.extend({}, Backbone.Events, {
 
   initialize() {
     this.listenTo(bikes, 'add change remove', this.trigger.bind(this, 'change'));
     this.listenTo(activities, 'add change remove', this.trigger.bind(this, 'change'));
+    this.listenTo(shelf, 'add change remove', this.trigger.bind(this, 'change'));
 
     this.listenTo(session, 'change', this.trigger.bind(this, 'change'));
   },
@@ -33,34 +35,45 @@ const Store = _.extend({}, Backbone.Events, {
   },
 
 
-  getComponents() {
-    return components.toJSON();
-
+  getShelf() {
+    return shelf.toJSON();
   },
 
-  fetchComponents() {
-    return components.fetch();
+  fetchShelf() {
+    return shelf.fetch();
   },
 
 
 
-  getComponent(id) {
-    let component = components.get(id);
+  getComponentFromShelf(id) {
+    let component = shelf.get(id);
     if(component) {
       return component.toJSON();
     } else {
-      components.fetch();
+      shelf.fetch();
       return {};
     }
   },
 
-  saveComponent(component, options) {
-    return components.create(component, options);
+  saveComponentToShelf(component) {
+    shelf.create(_.extend({}, component, {
+      onWhatBike: null,
+    }));
+
+    if(component.objectId) {
+      _.each(componentsCache, function(collection) {
+        collection.remove(component.objectId);
+      });
+    }
   },
 
-  destroyComponent(component) {
-    return components.get(component.objectId).destroy();
-  },
+  // saveComponent(component, options) {
+  //   return components.create(component, options);
+  // },
+  //
+  // destroyComponent(component) {
+  //   return components.get(component.objectId).destroy();
+  // },
 
   getComponentsForBike(id) {
     let components = (componentsCache[id] = componentsCache[id] || new ComponentsCollection(null, {bikeId: id}));
@@ -82,15 +95,6 @@ const Store = _.extend({}, Backbone.Events, {
     this.listenTo(components, 'add remove change', this.trigger.bind(this, 'change'));
     components.create(_.extend({}, component, {
       onWhatBike: {objectId: id},
-    }));
-  },
-
-  saveComponentToShelf(id, component) {
-    let components = (componentsCache[id] = componentsCache[id] || new ComponentsCollection(null, {bikeId: id}));
-    this.stopListening(components);
-    this.listenTo(components, 'add remove change', this.trigger.bind(this, 'change'));
-    components.create(_.extend({}, component, {
-      onWhatBike: {objectId: null},
     }));
   },
 

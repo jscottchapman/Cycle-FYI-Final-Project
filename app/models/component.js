@@ -5,6 +5,8 @@ import Bike from './bike';
 
 const Component = Backbone.Model.extend({
 
+  urlRoot: "https://api.parse.com/1/classes/Component",
+
   idAttribute: 'objectId',
 
   defaults() {

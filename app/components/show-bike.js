@@ -53,8 +53,8 @@ const ShowBike = React.createClass({
     this.refs.component.value = '';
   },
 
-  removeComponent(e) {
-    store.saveComponentToShelf(this.props.params.id, this.state.components);
+  removeComponent(component, e) {
+    store.saveComponentToShelf(component);
   },
 
   render() {
@@ -73,7 +73,7 @@ const ShowBike = React.createClass({
                   {components.map((x) =>
                     <li key={x.objectId || Date.now()}>
                       {x.name}--{x.miles}/{x.threshold}miles
-                        <button className="tiny button radius" onClick={this.removeComponent}>Remove component from bike</button>
+                        <button className="tiny button radius" onClick={this.removeComponent.bind(this, x)}>Remove component from bike</button>
                         <hr/>
                     </li>
                   )}

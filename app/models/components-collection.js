@@ -6,11 +6,11 @@ var ComponentsCollection = Backbone.Collection.extend({
 
     // "https://api.parse.com/1/classes/Component?include=creator,bike&bikeId=" + this.bikeId
     return "https://api.parse.com/1/classes/Component?include=creator,bike&where=" + JSON.stringify({
-      onWhatBike: {
+      onWhatBike: this.bikeId ? {
         __type: "Pointer",
         className: "Bike",
         objectId: this.bikeId
-      }
+      } : null
     });
 
   },
