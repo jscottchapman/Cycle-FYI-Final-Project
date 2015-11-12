@@ -32,8 +32,8 @@ const Activity = React.createClass({
     var activity = this.props.activity;
     // console.log(this.props)
     return (
-
-      <li>
+      <div className="row">
+      <li className="large-offset-4">
         <h4 className="bodytext">
           {activity.name}
         </h4>
@@ -53,6 +53,7 @@ const Activity = React.createClass({
         </select>
         <button onClick={this.handleAddActivity}>Add</button>
       </li>
+      </div>
     )
   }
 });
