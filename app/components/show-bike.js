@@ -64,7 +64,7 @@ const ShowBike = React.createClass({
   },
 
   saveOnBike(component) {
-    store.saveComponentOnBike(component);
+    store.saveComponentOnBike(this.state.bike.objectId, component);
   },
 
   render() {

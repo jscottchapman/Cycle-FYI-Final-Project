@@ -12,7 +12,6 @@ import Activity from './models/strava';
 let activities = new Activity();
 let session = new Session();
 let bikes = new BikesCollection();
-
 let componentsCache = {};
 let shelf = new ComponentsCollection();
 
@@ -95,7 +94,9 @@ const Store = _.extend({}, Backbone.Events, {
     this.listenTo(components, 'add remove change', this.trigger.bind(this, 'change'));
     components.create(_.extend({}, component, {
       onWhatBike: {objectId: id},
-    }));
+    }), {
+      success: () => shelf.fetch()
+    });
   },
 
   getBikes() {
