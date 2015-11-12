@@ -77,35 +77,42 @@ const ShowBike = React.createClass({
     } else {
       return (
         <div className="row">
-          <div>
-            <div className="large-4 columns">
+            <div className="large-offset-1 large-5 columns">
               <h1>{bike.name}</h1>
                 <ul className="bodytext">
                   {components.map((x) =>
                     <li key={x.objectId || Date.now()}>
                       {x.name}--{x.miles.toFixed()}/{x.threshold}miles
+                      <br/>
+
                         <button className="tiny button radius" onClick={this.removeComponent.bind(this, x)}>Remove component from bike</button>
                         <hr/>
                     </li>
                   )}
                   </ul>
+                  <Link className="button medium  radius" to={'/bikes/' + this.props.params.id + '/addcomponents'}>Add New Component</Link>
+                  <br/>
+                  <Link className="button medium addcompbutton radius" to={`/activities`}>Ready to assign usage?</Link>
+                  <br/>
+                  <button className="alert medium radius" onClick={this.handleDestroy}>Delete Bike Forever</button>
+
+
               </div>
 
-            </div>
-            <Link className="button medium addcompbutton radius" to={'/bikes/' + this.props.params.id + '/addcomponents'}>Add New Component</Link>
-            <Link className="button medium addcompbutton radius" to={`/activities`}>Ready to assign usage?</Link>
+
 
             {this.props.children || (
-              <div className="large-4 columns">
+              <div className="large-offset-1 large-5 columns">
                 <h1>The Parts Shelf</h1>
                 <h4 className="white-text">(parts not on a bike)</h4>
                 <ul className="white-text">
                   {shelf.map((x) =>
                     <li key={x.objectId || Date.now()} value={x.objectId}>
                       {x.name}--{x.miles}/{x.threshold}miles
+                      <br/>
+
                     <button className="tiny button radius" onClick={this.saveOnBike.bind(this, x)}>Save to this bike</button></li>
                   )}
-
                 </ul>
 
                 <button className="button medium" onClick={this.handleEdit}>Edit Bike Name</button>
@@ -113,7 +120,6 @@ const ShowBike = React.createClass({
 
               </div>
             )}
-            <button className="alert medium radius" onClick={this.handleDestroy}>Delete Bike Forever</button>
         </div>
       );
     }
