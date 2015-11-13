@@ -108,7 +108,7 @@ const ShowBike = React.createClass({
                 <ul className="white-text">
                   {shelf.map((x) =>
                     <li key={x.objectId || Date.now()} value={x.objectId}>
-                      {x.name}--{x.miles}/{x.threshold}miles
+                      {x.name}--{x.miles.toFixed(0)}/{x.threshold}miles
                       <br/>
 
                     <button className="tiny button radius" onClick={this.saveOnBike.bind(this, x)}>Save to this bike</button></li>
