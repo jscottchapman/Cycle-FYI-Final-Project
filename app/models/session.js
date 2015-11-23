@@ -2,6 +2,12 @@ import $ from 'jquery'
 import Backbone from 'backbone';
 import User from './user';
 
+function getCookie(name) {
+  var re = new RegExp(name + "=([^;]+)");
+  var value = re.exec(document.cookie);
+  return (value != null) ? unescape(value[1]) : null;
+}
+
 const Session = Backbone.Model.extend({
   authenticate(options) {
       if (options.username && options.password) {
@@ -34,7 +40,8 @@ const Session = Backbone.Model.extend({
     },
 
     restore() {
-      var token = localStorage.getItem('parse-session-token');
+      var cookieToken = getCookie('X-Parse-Session-Token');
+      var token = cookieToken || localStorage.getItem('parse-session-token');
       if (token) {
         this.authenticate({
           sessionToken: token

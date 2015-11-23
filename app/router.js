@@ -10,6 +10,7 @@ import Signup from './components/signup';
 import ShowBike from './components/show-bike';
 import ActivitiesView from './components/activities-view';
 import Thing from './components/landing';
+import StravaAuth from './components/strava-auth';
 
 import store from './store';
 
@@ -36,7 +37,7 @@ ReactDOM.render((
       <Route path="addcomponents" component={ComponentInput} onEnter={requireAuth} />
       </Route>
       <Route path="activities" component={ActivitiesView} />
-      <Route path="login" component={Login} onEnter={requireNotAuth} />
+      <Route path="login" component={StravaAuth} onEnter={requireNotAuth} />
       <Route path="signup" component={Signup} onEnter={requireNotAuth} />
     </Route>
   </Router>
