@@ -8,12 +8,14 @@ $include-html-button-classes: $include-html-classes;
 $button-tny: em-calc(5);
 
 body {
-  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../../public/assets/images/homepage.jpeg');
+  background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url('../../public/assets/images/homepage.jpeg');
   background-attachment: fixed;
   font-size: 150%;
   background-position: center;
   font-family: arial;
 }
+
+
 
 .orange-text {
   color: #f74f00;
@@ -33,7 +35,7 @@ div.row {
 
 .bike-box {
   border: 2px solid #f74f00;
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 1em;
   opacity: .6;
 
