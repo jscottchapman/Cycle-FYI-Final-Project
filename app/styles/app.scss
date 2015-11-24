@@ -8,7 +8,7 @@ $include-html-button-classes: $include-html-classes;
 $button-tny: em-calc(5);
 
 body {
-  background-image: url('../../public/assets/images/homepage.jpeg');
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../../public/assets/images/homepage.jpeg');
   background-position: center;
   font-family: arial;
   font-size: 150%;
