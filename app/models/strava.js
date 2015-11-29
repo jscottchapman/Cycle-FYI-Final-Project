@@ -9,6 +9,7 @@ var Activity = Backbone.Collection.extend({
   },
 
   parse(response) {
+    console.log(Activity);
     return response.result;
   }
 });

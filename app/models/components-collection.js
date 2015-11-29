@@ -18,7 +18,6 @@ var ComponentsCollection = Backbone.Collection.extend({
 
   initialize(models, options) {
     this.bikeId = options && options.bikeId;
-    console.log(options)
   },
 
   parse(response) {
